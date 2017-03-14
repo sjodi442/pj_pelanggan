@@ -28,7 +28,12 @@ $query1 = "INSERT into transaction_log_internet values (DEFAULT, '$inv_num','$us
   }
   if(mysqli_query($konek, $query1)){
     echo "behasil";
+    if ($media_akses == 'FO'){
+      header("Location: ../nav.php");
+    }
+    else {
     header("Location: ../nav.php?page=dt_internet");
+    }
   }
   else{
     echo "gagal";

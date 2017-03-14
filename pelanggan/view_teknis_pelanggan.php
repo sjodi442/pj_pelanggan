@@ -80,7 +80,7 @@ $sql3 = mysqli_query($konek, $query3);
     while ($k3 = mysqli_fetch_array($sql3)){
       echo "<li>
       media akses: $k3[media_akses]<br>
-      bandwith: $k3[bandwith] MB";
+      bandwith: $k3[bandwith] MB <br>";
       echo "<br>";
     }
     ?>
