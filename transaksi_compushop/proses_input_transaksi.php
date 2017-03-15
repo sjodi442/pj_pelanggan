@@ -19,17 +19,18 @@ if(isset($_POST['submit'])){
   echo $harga_satuan;echo "<br >";
   echo $g_akhir;echo "<br >";
 //input ke table transaction_log & transaction_log_compushop
-$query = "INSERT into transaction_log values ('$inv_num','$userid','compushop','$total_harga',now(),'$due_date','','$total_harga','hutang')";
-$query1 = "INSERT into transaction_log_compushop values (DEFAULT, '$inv_num','$userid','$productid','$harga_satuan','$qty','$total_harga',NOW(),NOW(),'$g_akhir')";
+//$query = "INSERT into transaction_log values ('$inv_num','$userid','compushop','$total_harga',now(),'$due_date','','$total_harga','hutang')";
+$query1 = "INSERT into temp values (DEFAULT, '$inv_num','$userid','$productid','$harga_satuan','$qty','$total_harga',NOW(),NOW(),'$g_akhir','$due_date')";
 //jalankan perintah insert transaction_log
-  if(mysqli_query($konek, $query)){
-    echo "berhasil";
-  }
+  //if(mysqli_query($konek, $query)){
+  //  echo "berhasil";
+  //}
   if(mysqli_query($konek, $query1)){
     echo "behasil";
+    header("Location: view_temp.php");
   }
   else{
-    echo "gagal";
+    echo "error";
   }
 }
 else{
