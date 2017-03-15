@@ -13,7 +13,7 @@
   </script>
 <body>
   <!-- preform -->
-<?php include "../koneksi.php";
+<?php include "koneksi.php";
 $edit=mysqli_query($konek,"select * from transaction_log ORDER BY inv_num
 DESC LIMIT 1") or die (mysqli_error($konek));
 $r = mysqli_fetch_array($edit);
@@ -22,7 +22,7 @@ $a++;
 ?>
   <!-- form -->
   <h1>Input Transaksi compushop</h1>
-  <form name="form1" method="post" action="proses_input_transaksi.php">
+  <form name="form1" method="post" action="transaksi_compushop/proses_input_transaksi.php">
   <input type="text" name="inv_num" hidden="true" value="<?php if (empty($r)) echo "T00000".$a; else echo $a; ?>"><br>
     Nama User:  <select name="userid">
                 <?php

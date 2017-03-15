@@ -61,6 +61,10 @@
 						case 'transaksi_internet'					: include"transaksi_internet/form_transaksi_internet.php";break;
 						//input dt internet
 						case 'dt_internet'								: include"dt_internet/form_dt_internet.php";break;
+						//view transaksi_compushop lagi
+						case 'view_temp'									: include"transaksi_compushop/view_temp.php";break;
+						//input beli lagi
+						case 'beli_lagi'									: include"transaksi_compushop/form_beli_lagi.php";break;
 						}
 					?>
 </div>

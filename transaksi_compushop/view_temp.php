@@ -1,5 +1,5 @@
 <?php
-include "../koneksi.php";
+include "koneksi.php";
 $ss = "SELECT * from temp order by inv_num desc limit 1";
 $aa = mysqli_query($konek, $ss);
 $bb = mysqli_fetch_array($aa);
@@ -44,7 +44,7 @@ $total = 0;
   <td><?php echo $total ?></td>
 </tr>
 </table><br>
-<a href="form_beli_lagi.php">beli lagi</a>
-<a href="proses_input_transaksi_final.php?inv_num=<?php echo $bb['inv_num'] ?>&total=<?php echo $total ?>">cetak</a>
+<a href="nav.php?page=beli_lagi">beli lagi</a>
+<a href="transaksi_compushop/proses_input_transaksi_final.php?inv_num=<?php echo $bb['inv_num'] ?>&total=<?php echo $total ?>">cetak</a>
 </body>
 </html>

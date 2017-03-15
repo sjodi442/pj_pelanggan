@@ -27,7 +27,7 @@ $query1 = "INSERT into temp values (DEFAULT, '$inv_num','$userid','$productid','
   //}
   if(mysqli_query($konek, $query1)){
     echo "behasil";
-    header("Location: view_temp.php");
+    header("Location: ../nav.php?page=view_temp");
   }
   else{
     echo "error";
