@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2017 at 04:29 AM
+-- Generation Time: Mar 15, 2017 at 01:02 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -40,7 +40,9 @@ CREATE TABLE `dt_internet_fo` (
 --
 
 INSERT INTO `dt_internet_fo` (`id`, `userid`, `media_akses`, `bandwith`) VALUES
-(1, 'U0001', 'FO', '2');
+(1, 'U0001', 'FO', '2'),
+(3, 'U0006', 'FO', '3'),
+(4, 'U0005', 'FO', '1');
 
 -- --------------------------------------------------------
 
@@ -66,7 +68,8 @@ CREATE TABLE `dt_internet_wireless` (
 INSERT INTO `dt_internet_wireless` (`id`, `userid`, `media_akses`, `productid_antena`, `productid_radio`, `productid_bts`, `bandwith`, `frequensi`) VALUES
 (1, 'U0006', 'Wireless', 'A0001', 'R0001', 'B0001', '2', '2,4 G'),
 (2, 'U0001', 'Wireless', 'A0001', 'R0002', 'B0002', '2', '5,8 GHZ'),
-(3, 'U0001', 'Wireless', 'A0001', 'R0001', 'B0001', '3', '2,4 GHZ');
+(3, 'U0001', 'Wireless', 'A0001', 'R0001', 'B0001', '3', '2,4 GHZ'),
+(4, 'U0005', 'Wireless', 'A0001', 'R0001', 'B0001', '5', '2,4 GHZ');
 
 -- --------------------------------------------------------
 
@@ -282,6 +285,26 @@ INSERT INTO `produk_training` (`productid_training`, `nama_training`, `harga`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `temp`
+--
+
+CREATE TABLE `temp` (
+  `id_tl` int(11) NOT NULL,
+  `inv_num` char(15) NOT NULL,
+  `userid` char(5) NOT NULL,
+  `productid` char(5) NOT NULL,
+  `harga_satuan` int(12) NOT NULL,
+  `qty` int(5) NOT NULL,
+  `total_bayar` int(12) NOT NULL,
+  `tgl_transaksi` date NOT NULL,
+  `garansi_mulai` date NOT NULL,
+  `garansi_akhir` date NOT NULL,
+  `due_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transaction_log`
 --
 
@@ -313,7 +336,12 @@ INSERT INTO `transaction_log` (`inv_num`, `userid`, `tipe_prod`, `total_bayar`, 
 ('T000010', 'U0001', 'internet', 12000, '2017-03-14', '2017-04-01', '0000-00-00', 12000, 'hutang'),
 ('T000011', 'U0006', 'internet', 12000, '2017-03-14', '2017-03-31', '0000-00-00', 12000, 'hutang'),
 ('T000012', 'U0001', 'internet', 12000, '2017-03-14', '0000-00-00', '0000-00-00', 12000, 'hutang'),
-('T000013', 'U0001', 'internet', 132000, '2017-03-14', '2017-03-31', '0000-00-00', 132000, 'hutang');
+('T000013', 'U0001', 'internet', 132000, '2017-03-14', '2017-03-31', '0000-00-00', 132000, 'hutang'),
+('T000014', 'U0006', 'internet', 132000, '2017-03-14', '2017-04-01', '0000-00-00', 132000, 'hutang'),
+('T000015', 'U0005', 'internet', 1100, '2017-03-14', '2017-03-31', '0000-00-00', 1100, 'hutang'),
+('T000016', 'U0005', 'internet', 50000, '2017-03-14', '2017-04-01', '0000-00-00', 50000, 'hutang'),
+('T000017', 'U0001', 'internet', 12000, '2017-03-14', '2017-03-31', '0000-00-00', 12000, 'hutang'),
+('T000018', 'U0005', 'compushop', 25000, '2017-03-15', '2017-03-31', '0000-00-00', 25000, 'hutang');
 
 -- --------------------------------------------------------
 
@@ -343,7 +371,9 @@ INSERT INTO `transaction_log_compushop` (`id_tl`, `inv_num`, `userid`, `producti
 (5, 'T000002', 'U0003', 'P0002', 5000, 3, 15000, '2017-03-03', '2017-03-03', '2017-06-09'),
 (6, 'T000003', 'U0001', 'P0002', 5000, 3, 15000, '2017-03-05', '2017-03-05', '2017-04-01'),
 (8, 'T000005', 'U0005', 'P0001', 20000, 2, 40000, '2017-03-10', '2017-03-10', '2017-04-01'),
-(9, 'T000008', 'U0006', 'P0001', 20000, 2, 40000, '2017-03-12', '2017-03-12', '2017-04-01');
+(9, 'T000008', 'U0006', 'P0001', 20000, 2, 40000, '2017-03-12', '2017-03-12', '2017-04-01'),
+(24, 'T000018', 'U0005', 'P0001', 20000, 1, 20000, '2017-03-15', '2017-03-15', '2017-04-01'),
+(25, 'T000018', 'U0005', 'P0002', 5000, 1, 5000, '2017-03-15', '2017-03-15', '2017-03-31');
 
 -- --------------------------------------------------------
 
@@ -369,7 +399,11 @@ INSERT INTO `transaction_log_internet` (`id_tl`, `inv_num`, `userid`, `media_aks
 (8, 'T000010', 'U0001', 'FO', '2', 12000, '2017-03-14'),
 (9, 'T000011', 'U0006', 'Wireless', '2', 12000, '2017-03-14'),
 (10, 'T000012', 'U0001', 'Wireless', '2', 12000, '2017-03-14'),
-(11, 'T000013', 'U0001', 'Wireless', '5', 132000, '2017-03-14');
+(11, 'T000013', 'U0001', 'Wireless', '5', 132000, '2017-03-14'),
+(13, 'T000014', 'U0006', 'FO', '3', 132000, '2017-03-14'),
+(14, 'T000015', 'U0005', 'FO', '1', 1100, '2017-03-14'),
+(15, 'T000016', 'U0005', 'Wireless', '5', 50000, '2017-03-14'),
+(16, 'T000017', 'U0001', 'FO', '10', 12000, '2017-03-14');
 
 -- --------------------------------------------------------
 
@@ -481,6 +515,14 @@ ALTER TABLE `produk_training`
   ADD PRIMARY KEY (`productid_training`);
 
 --
+-- Indexes for table `temp`
+--
+ALTER TABLE `temp`
+  ADD PRIMARY KEY (`id_tl`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `productid` (`productid`);
+
+--
 -- Indexes for table `transaction_log`
 --
 ALTER TABLE `transaction_log`
@@ -493,8 +535,7 @@ ALTER TABLE `transaction_log`
 ALTER TABLE `transaction_log_compushop`
   ADD PRIMARY KEY (`id_tl`),
   ADD KEY `userid` (`userid`),
-  ADD KEY `productid` (`productid`),
-  ADD KEY `inv_num` (`inv_num`);
+  ADD KEY `productid` (`productid`);
 
 --
 -- Indexes for table `transaction_log_internet`
@@ -521,12 +562,12 @@ ALTER TABLE `transaction_log_training`
 -- AUTO_INCREMENT for table `dt_internet_fo`
 --
 ALTER TABLE `dt_internet_fo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `dt_internet_wireless`
 --
 ALTER TABLE `dt_internet_wireless`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pelanggan_compushop`
 --
@@ -548,15 +589,20 @@ ALTER TABLE `pelanggan_training`
 ALTER TABLE `pelanggan_websoft`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `temp`
+--
+ALTER TABLE `temp`
+  MODIFY `id_tl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `transaction_log_compushop`
 --
 ALTER TABLE `transaction_log_compushop`
-  MODIFY `id_tl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_tl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `transaction_log_internet`
 --
 ALTER TABLE `transaction_log_internet`
-  MODIFY `id_tl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_tl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `transaction_log_training`
 --
@@ -565,6 +611,12 @@ ALTER TABLE `transaction_log_training`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `dt_internet_fo`
+--
+ALTER TABLE `dt_internet_fo`
+  ADD CONSTRAINT `dt_internet_fo_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `pelanggan` (`userid`);
 
 --
 -- Constraints for table `dt_internet_wireless`
@@ -585,9 +637,8 @@ ALTER TABLE `transaction_log`
 -- Constraints for table `transaction_log_compushop`
 --
 ALTER TABLE `transaction_log_compushop`
-  ADD CONSTRAINT `transaction_log_compushop_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `pelanggan` (`userid`),
   ADD CONSTRAINT `transaction_log_compushop_ibfk_2` FOREIGN KEY (`productid`) REFERENCES `produk_compushop` (`productid`),
-  ADD CONSTRAINT `transaction_log_compushop_ibfk_3` FOREIGN KEY (`inv_num`) REFERENCES `transaction_log` (`inv_num`);
+  ADD CONSTRAINT `transaction_log_compushop_ibfk_3` FOREIGN KEY (`userid`) REFERENCES `pelanggan` (`userid`);
 
 --
 -- Constraints for table `transaction_log_internet`
