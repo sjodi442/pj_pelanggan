@@ -14,21 +14,18 @@ $userid = $_GET['userid'];
     <center>
   		<thead>
   			<tr>
-  				<th>Tanggal</th><th>Nama Produk</th><th>Jumlah</th><th>Harga satuan</th><th>total</th><th>NO transaksi</th><th>Payment Date</th><th>Due Date</th><th>outstanding</th>
+  				<th>Tanggal</th><th>total</th><th>NO transaksi</th><th>Payment Date</th><th>Due Date</th><th>outstanding</th>
   			</tr>
   		</thead>
   	</center>
     <?php
-    $query = "select transaction_log.tgl_transaksi, produk_compushop.nama_produk, transaction_log_compushop.qty, transaction_log_compushop.harga_satuan, transaction_log.total_bayar, transaction_log.inv_num, transaction_log.due_date, transaction_log.payment_date, transaction_log.outstanding from transaction_log inner join transaction_log_compushop on transaction_log.userid=transaction_log_compushop.userid and transaction_log.inv_num=transaction_log_compushop.inv_num inner join produk_compushop on transaction_log_compushop.productid=produk_compushop.productid where transaction_log.userid='$userid'";
+    $query = "select transaction_log.tgl_transaksi, transaction_log.total_bayar, transaction_log.inv_num, transaction_log.due_date, transaction_log.payment_date, transaction_log.outstanding from transaction_log where transaction_log.userid='$userid' and transaction_log.tipe_prod='compushop' order by transaction_log.inv_num ASC";
     $sql = mysqli_query($konek, $query);
     while ($k = mysqli_fetch_array($sql)){
       echo "<tr>
       <td>$k[tgl_transaksi]</td>
-      <td>$k[nama_produk]</td>
-      <td>$k[qty]</td>
-      <td>$k[harga_satuan]</td>
       <td>$k[total_bayar]</td>
-      <td>$k[inv_num]</td>
+      <td><a href='nav.php?page=view_detail_tl_cs&inv_num=$k[inv_num]'>$k[inv_num]</td>
       <td>$k[payment_date]</td>
       <td>$k[due_date]</td>
       <td>$k[outstanding]</td>

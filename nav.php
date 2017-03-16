@@ -49,6 +49,8 @@
 						case 'view_pelanggan'							: include"pelanggan/view_pelanggan.php";break;
 						//view detail transaction_log pelanggan
 						case 'view_transaction_pelanggan'	: include"pelanggan/view_transaction_pelanggan.php";break;
+						//view detail tl compushop
+						case 'view_detail_tl_cs'					: include"pelanggan/view_detail_tl_cs.php";break;
 						//view detail teknis pelanggan
 						case 'view_teknis_pelanggan'			: include"pelanggan/view_teknis_pelanggan.php";break;
 						//view produk compushop
